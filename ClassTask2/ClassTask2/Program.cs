@@ -11,16 +11,15 @@ namespace ClassTask2
             string brand = "M5";
             string color = "Mavi";
             int year = 2010;
-            int fuelCapacity = 40;
+            int fuelCapacity = 5;
             double fuelFor1Km = 0.5;
-            int currentFuel = 6;
-            int km = 10000;
+            double currentFuel = 3.5;
+            int km = 10;
 
             Car car = new Car(model, brand, year, fuelCapacity, fuelFor1Km, color, currentFuel);
             car.ShowInfo();
 
-            double result = car.Drive(km);
-            car.PrintCurrentFuel(result);
+            car.Drive(km);
         }
     }
 }

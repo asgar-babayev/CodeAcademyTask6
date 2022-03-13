@@ -10,7 +10,7 @@ namespace ClassTask2.Models
         public string model;
         public int fuelCapacity;
         public double fuelFor1Km;
-        public int currentFuel;
+        public double currentFuel;
 
         public Car(string model, string brand, int year, int fuelCapacity, double fuelFor1Km) : base(year)
         {
@@ -26,7 +26,7 @@ namespace ClassTask2.Models
             this.fuelCapacity = fuelCapacity;
             this.fuelFor1Km = fuelFor1Km;
         }
-        public Car(string model, string brand, int year, int fuelCapacity, double fuelFor1Km, string color, int currentFuel) : this(model, brand, year, fuelCapacity, fuelFor1Km, color)
+        public Car(string model, string brand, int year, int fuelCapacity, double fuelFor1Km, string color, double currentFuel) : this(model, brand, year, fuelCapacity, fuelFor1Km, color)
         {
             this.currentFuel = currentFuel;
         }
@@ -37,27 +37,53 @@ namespace ClassTask2.Models
 Brand: {brand}
 Rəng: {color}
 İl: {year}
-Yanacaq tutumu: {fuelCapacity} litr
-1km-də yanan yanacaq: {fuelFor1Km} litr
-Cari yanacaq: {currentFuel} litr
-");
+Yanacaq tutumu: {fuelCapacity} l
+1km-də yanan yanacaq: {fuelFor1Km} l
+Cari yanacaq: {currentFuel} l
+--------------------------------------------------");
         }
 
-        public double Drive(int km)
+        public void Drive(int km)
         {
-            if (km > 0)
-                return currentFuel - (km * fuelFor1Km) / 1000;
-            return -1;
-        }
-
-        public void PrintCurrentFuel(double result)
-        {
-            if (result > 0)
-                Console.WriteLine($"{result} litr benzin qalıb.");
-            else if(result == -1)
-                Console.WriteLine("Gedilən yol 0 və ya mənfi ədəd ola bilməz.");
+            double current_Fuel = this.currentFuel;
+            if (km > 0 && current_Fuel >= 0 && current_Fuel < fuelCapacity)
+            {
+                current_Fuel = current_Fuel - (km * fuelFor1Km);
+                Console.WriteLine($"Gedilən məsafə: {km} km");
+                if (current_Fuel > 0)
+                {
+                    Console.WriteLine($"{current_Fuel} l benzin qalıb");
+                }
+                else if (current_Fuel == 0)
+                {
+                    Console.WriteLine($"{km} km məsafəyə benzin tam bitəcək.");
+                }
+                else if (current_Fuel <= 0)
+                {
+                    current_Fuel = 0;
+                    Console.WriteLine($@"{km} km məsafə üçün kifayət qədər benzin yoxdur.
+Yanacaq çəni {fuelCapacity} l tutuma malikdir.");
+                    current_Fuel = (km * fuelFor1Km) - currentFuel;
+                    double temp = currentFuel + current_Fuel;
+                    if (current_Fuel <= fuelCapacity && current_Fuel > 0 && temp <= fuelCapacity)
+                        Console.WriteLine($"{current_Fuel} l benzin əlavə edib yola davam edə bilərsiz");
+                }
+            }
             else
-                Console.WriteLine("Benzin qalmıyıb");
+            {
+                if(current_Fuel > fuelCapacity)
+                {
+                    Console.WriteLine("Cari yanacaq maksimum yanacaqdan çox ola bilməz.");
+                }
+                else if (km <= 0)
+                {
+                    Console.WriteLine("Gediləcək məsafə 0 və ya mənfi ola bilməz.");
+                }
+                else if (current_Fuel < 0)
+                {
+                    Console.WriteLine("Cari yanacaq 0-dan az ola bilməz.");
+                }
+            }
         }
     }
 }
