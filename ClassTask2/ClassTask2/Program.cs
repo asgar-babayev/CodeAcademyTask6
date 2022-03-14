@@ -16,7 +16,7 @@ namespace ClassTask2
             double currentFuel = 3.5;
             int km = 10;
 
-            Car car = new Car(model, brand, year, fuelCapacity, fuelFor1Km, color, currentFuel);
+            Car car = new Car(model, brand, year, fuelCapacity, fuelFor1Km, currentFuel);
             car.ShowInfo();
 
             car.Drive(km);

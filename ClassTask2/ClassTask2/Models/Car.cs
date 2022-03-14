@@ -30,6 +30,10 @@ namespace ClassTask2.Models
         {
             this.currentFuel = currentFuel;
         }
+        public Car(string model, string brand, int year, int fuelCapacity, double fuelFor1Km,  double currentFuel): this(model, brand, year, fuelCapacity,fuelFor1Km)
+        {
+            this.currentFuel = currentFuel;
+        }
 
         public void ShowInfo()
         {
