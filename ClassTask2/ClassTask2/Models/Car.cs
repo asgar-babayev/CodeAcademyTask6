@@ -8,29 +8,29 @@ namespace ClassTask2.Models
     {
         public string brand;
         public string model;
-        public int fuelCapacity;
+        public double fuelCapacity;
         public double fuelFor1Km;
         public double currentFuel;
 
-        public Car(string model, string brand, int year, int fuelCapacity, double fuelFor1Km) : base(year)
+        public Car(string model, string brand, int year, double fuelCapacity, double fuelFor1Km) : base(year)
         {
             this.model = model;
             this.brand = brand;
             this.fuelCapacity = fuelCapacity;
             this.fuelFor1Km = fuelFor1Km;
         }
-        public Car(string model, string brand, int year, int fuelCapacity, double fuelFor1Km, string color) : base(color, year)
+        public Car(string model, string brand, int year, double fuelCapacity, double fuelFor1Km, string color) : base(color, year)
         {
             this.model = model;
             this.brand = brand;
             this.fuelCapacity = fuelCapacity;
             this.fuelFor1Km = fuelFor1Km;
         }
-        public Car(string model, string brand, int year, int fuelCapacity, double fuelFor1Km, string color, double currentFuel) : this(model, brand, year, fuelCapacity, fuelFor1Km, color)
+        public Car(string model, string brand, int year, double fuelCapacity, double fuelFor1Km, string color, double currentFuel) : this(model, brand, year, fuelCapacity, fuelFor1Km, color)
         {
             this.currentFuel = currentFuel;
         }
-        public Car(string model, string brand, int year, int fuelCapacity, double fuelFor1Km,  double currentFuel): this(model, brand, year, fuelCapacity,fuelFor1Km)
+        public Car(string model, string brand, int year, double fuelCapacity, double fuelFor1Km,  double currentFuel): this(model, brand, year, fuelCapacity,fuelFor1Km)
         {
             this.currentFuel = currentFuel;
         }
@@ -47,7 +47,7 @@ Cari yanacaq: {currentFuel} l
 --------------------------------------------------");
         }
 
-        public void Drive(int km)
+        public void Drive(double km)
         {
             double current_Fuel = this.currentFuel;
             if (km > 0 && current_Fuel >= 0 && current_Fuel < fuelCapacity)
